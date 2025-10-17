@@ -1,4 +1,5 @@
 # Ignore Python cache folders
 __pycache__/
 *.py[cod]
+config.txt
 
