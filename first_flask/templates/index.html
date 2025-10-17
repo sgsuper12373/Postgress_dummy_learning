@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Reading List</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; }
+        .book { border-bottom: 1px solid #ccc; padding: 0.5em 0; }
+    </style>
+</head>
+<body>
+    <h1>My Reading List</h1>
+
+    <form method="POST" action="/add">
+        <label for="title">Title:</label>
+        <input type="text" name="title" required>
+        <label for="author">Author:</label>
+        <input type="text" name="author" required>
+        <button type="submit">Add Book</button>
+    </form>
+
+    <hr>
+
+    <h2>The Books</h2>
+    <div>
+        {% for book in books %}
+            <div class="book">
+                <span>{{ book['title'] }} by {{ book['author'] }}</span>
+		<form method="POST" action = "{{ url_for('delete_book', id=book['id']) }}" style="display: inline;" > 
+		<button type="submit"> Delete</button> 
+		</form> 
+            </div>
+        {% else %}
+            <p>No books in your list yet!</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
